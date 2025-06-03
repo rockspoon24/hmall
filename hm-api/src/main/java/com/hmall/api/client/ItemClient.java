@@ -20,4 +20,7 @@ public interface ItemClient {
 
     @PutMapping("/items/stock/restore")
     void restoreStock(@RequestBody List<OrderDetailDTO> items);
+
+    @GetMapping("/items/{id}}")
+    ItemDTO queryItemById(@PathVariable("id") Long id);
 }
