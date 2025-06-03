@@ -6,3 +6,15 @@ hm:
   swagger:
     title: "黑马商城商品服务接口文档"
     package: com.hmall.item.controller
+spring:
+  rabbitmq:
+    host: 8.134.144.160 # 你的虚拟机IP
+    port: 5672 # 端口
+    virtual-host: /hmall # 虚拟主机
+    username: hmall # 用户名
+    password: 123 # 密码
+#  ElasticsearchRestTemplate配置
+  elasticsearch:
+    socket-timeout: 30s
+    uris: http://localhost:9200
+    connection-timeout: 1s

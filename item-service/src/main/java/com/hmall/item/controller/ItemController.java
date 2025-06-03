@@ -9,14 +9,18 @@ import com.hmall.common.domain.PageDTO;
 import com.hmall.common.domain.PageQuery;
 import com.hmall.common.utils.BeanUtils;
 import com.hmall.item.domain.po.Item;
+import com.hmall.item.domain.po.ItemDoc;
 import com.hmall.item.service.IItemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @Api(tags = "商品管理相关接口")
 @RestController
 @RequestMapping("/items")
@@ -50,7 +54,7 @@ public class ItemController {
     @PostMapping
     public void saveItem(@RequestBody ItemDTO item) {
         // 新增
-        itemService.save(BeanUtils.copyBean(item, Item.class));
+        itemService.addItem(item);
     }
 
     @ApiOperation("更新商品状态")
@@ -65,16 +69,13 @@ public class ItemController {
     @ApiOperation("更新商品")
     @PutMapping
     public void updateItem(@RequestBody ItemDTO item) {
-        // 不允许修改商品状态，所以强制设置为null，更新时，就会忽略该字段
-        item.setStatus(null);
-        // 更新
-        itemService.updateById(BeanUtils.copyBean(item, Item.class));
+        itemService.updateItem(item);
     }
 
     @ApiOperation("根据id删除商品")
     @DeleteMapping("{id}")
     public void deleteItemById(@PathVariable("id") Long id) {
-        itemService.removeById(id);
+        itemService.deleteItemById(id);
     }
 
     @ApiOperation("批量扣减库存")
