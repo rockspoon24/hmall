@@ -22,7 +22,6 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("item")
 public class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;

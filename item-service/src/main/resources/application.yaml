@@ -15,6 +15,4 @@ spring:
     password: 123 # 密码
 #  ElasticsearchRestTemplate配置
   elasticsearch:
-    socket-timeout: 30s
-    uris: http://localhost:9200
-    connection-timeout: 1s
+

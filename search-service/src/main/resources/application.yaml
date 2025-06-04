@@ -6,3 +6,8 @@ hm:
   swagger:
     title: "黑马商城搜索商品服务接口文档"
     package: com.hmall.search.controller
+spring:
+  elasticsearch:
+    socket-timeout: 30s
+    uris: http://localhost:9200
+    connection-timeout: 1s

@@ -1,15 +1,23 @@
 package com.hmall.search.domain.po;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.time.LocalDateTime;
 
 @Data
 @ApiModel(description = "索引库实体")
+@TableName("item")
 public class ItemDoc{
 
+    @Id
     @ApiModelProperty("商品id")
     private String id;
 
@@ -38,5 +46,7 @@ public class ItemDoc{
     private Boolean isAD;
 
     @ApiModelProperty("更新时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8",locale = "zh_CN")
+    @Field(type = FieldType.Date, name = "create_time", pattern = "yyyy-MM-dd HH:mm:ss",format = DateFormat.custom )
     private LocalDateTime updateTime;
 }
